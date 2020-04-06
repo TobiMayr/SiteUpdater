@@ -1,10 +1,11 @@
-import sys
-
 import requests
 from PySide2.QtCore import QThreadPool
+from fbs_runtime.application_context.PySide2 import ApplicationContext
 from PySide2.QtWidgets import QApplication, QLabel, QWidget, QLineEdit, QGridLayout, QPushButton, QMessageBox
 
-from src import Worker
+import sys
+
+from worker import Worker
 
 
 class SiteUpdater(QWidget):
@@ -62,7 +63,7 @@ class SiteUpdater(QWidget):
             count = source_code.count(keyword)
             keywords_dict[keyword] = count
             keyword_message += f'{keyword}: \t{count} \n\n'
-        keyword_message += 'Alert wenn Anzahl hoeher wird?'
+        keyword_message += 'Alert wenn sich die Anzahl ändert?'
         self.status_label.setText('Erfolgreich Seite abgerufen')
 
         message_box = QMessageBox.question(self, 'Solls los gehn?', keyword_message,
